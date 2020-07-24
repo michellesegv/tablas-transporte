@@ -1,3 +1,3 @@
 # tablas-transporte
 
-url: [Tablas](https://michellesegv2.github.io/tablas-transporte/ "Tablas")
+url: [Tablas](https://michellesegv.github.io/tablas-transporte/ "Tablas")
