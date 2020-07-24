@@ -4,6 +4,8 @@ const Table = (function () {
     tablas: document.querySelectorAll('.tabla'),
     selects: document.querySelectorAll('.container-select'),
     opsSelect: document.querySelectorAll('.container-select ul li'),
+    filters: document.querySelectorAll('.show-filters'),
+    rowsContainers: document.querySelectorAll('.ctn-rows .first-row > div:first-child'),
     urlTable1: 'js/tabla_1.json',
     urlTable2: 'js/tabla_2.json',
     indexTabla1: [
@@ -62,23 +64,24 @@ const Table = (function () {
       {
         id: "notificacion-observacion",
         name: "NotifObservación"
-      },
-      {
-        id: "subsanado",
-        name: "Subsanado"
-      },
-      {
-        id: "notificacion-autorizacion",
-        name: "Notificado Autorización"
-      },
-      {
-        id: "especialista",
-        name: "Especialista"
-      },
-      {
-        id: "estado",
-        name: "Estado"
       }
+      // ,
+      // {
+      //   id: "subsanado",
+      //   name: "Subsanado"
+      // },
+      // {
+      //   id: "notificacion-autorizacion",
+      //   name: "Notificado Autorización"
+      // },
+      // {
+      //   id: "especialista",
+      //   name: "Especialista"
+      // },
+      // {
+      //   id: "estado",
+      //   name: "Estado"
+      // }
     ],
     indexTabla2: [
       {
@@ -197,6 +200,24 @@ const Table = (function () {
           data.selects.forEach((e) => { e.classList.remove('active') })
         }
       })
+    },
+    showFilters: function (elem) {
+      elem.addEventListener('click', (e) => {
+        const elem = e.target
+        const id = elem.parentNode.parentNode.parentNode.id
+        document.querySelector(`#${id} .tbody`).classList.toggle('hide-inputs')
+      })
+    },
+    showSubTabla: function (elem) {
+      elem.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        const elem = e.target
+        const ctn = e.target.parentNode.parentNode
+
+        ctn.classList.toggle('show-sub-tabla')
+      })
     }
   };
 
@@ -226,44 +247,60 @@ const Table = (function () {
       });
     },
     makeTableBody: function (_data, _table, _index) {
-      const tBody = document.querySelector(`.${_table} table tbody`)
+      const tBody = document.querySelector(`.${_table} .table .tbody`)
       for (let i = 0; i < _data.length; i++) {
         let renderInput = i == 0 ? true : false
 
         renderInput ?
-          rowInputs = document.createElement('tr') : true
-        let row = document.createElement('tr')
+          rowInputs = document.createElement('div') : true
+
+        let row = document.createElement('div')
+        row.classList.add('ctn-rows')
+        let subRow = document.createElement('div')
+        subRow.classList.add('first-row')
         for (let y = 0; y < _index.length; y++) {
           if (renderInput) {
-            let cellInput = document.createElement('td')
+            let cellInput = document.createElement('div')
             cellInput.appendChild(document.createElement('input'))
             rowInputs.appendChild(cellInput)
           }
-          let cell = document.createElement('td')
+          let cell = document.createElement('div')
           let textCell = document.createTextNode(_data[i][_index[y].id])
           cell.appendChild(textCell)
-          row.appendChild(cell)
-          if (y == _index.length - 1 && _table == 'tabla-1') {
-            row.appendChild(methods.makeOptions())
+          subRow.appendChild(cell)
+          if (y == _index.length - 1) {
+            subRow.appendChild(methods.makeOptions())
           }
         }
         renderInput ? tBody.appendChild(rowInputs) : true
+        row.appendChild(subRow);
+        row.appendChild(methods.makeSubTabla())
         tBody.appendChild(row);
       }
-      if (_table == 'tabla-1') document.querySelectorAll('.more-ops').forEach((e) => { events.showMoreOptions(e) })
+
+      document.querySelectorAll('.ctn-rows .first-row > div:first-child').forEach((e) => { events.showSubTabla(e) })
+      document.querySelectorAll('.more-ops').forEach((e) => { events.showMoreOptions(e) })
     },
     makeTableHeader: function (_data, _table) {
       const lengthHeader = _data.length;
-      const tHead = document.querySelector(`.${_table} table thead tr`)
+      const tHead = document.querySelector(`.${_table} .table .thead`)
       for (let i = 0; i < lengthHeader; i++) {
-        let cell = document.createElement('td')
+        let cell = document.createElement('div')
         let textCell = document.createTextNode(_data[i].name)
+
         cell.appendChild(textCell)
         tHead.appendChild(cell)
+
+        if (i == lengthHeader - 1) {
+          let cell = document.createElement('div')
+          let textCell = document.createTextNode('Acción')
+          cell.appendChild(textCell)
+          tHead.appendChild(cell)
+        }
       }
     },
     makeOptions: function () {
-      let cell = document.createElement('td')
+      let cell = document.createElement('div')
       cell.innerHTML = `<div class="more-ops">
                           <div class="circles">
                             <span>stop_circle</span>
@@ -272,13 +309,73 @@ const Table = (function () {
                           </div>
                           <div>
                             <ul>
-                              <li><span>description</span> Detalle de solicitud</li>
-                              <li><span>folder_open</span>Detalle de Expediente</li>
-                              <li><span>settings</span>Subsanación</li>
+                              <li><span>chat_bubble_outline</span> Consultar</li>
+                              <li><span>print</span>Imprimir</li>
                             </ul>
                           </div>
                         </div>`
       return cell
+    },
+    makeSubTabla: function () {
+      let tabla = document.createElement('div')
+      tabla.classList.add('ctn-sub-tabla')
+      tabla.innerHTML = `<div class="sub-tabla">
+      <div class="sub-tabla-thead">
+        <div>Órden</div>
+        <div>Documento</div>
+        <div>TIPOLOGÍA DOCUMENTAL</div>
+        <div>FECHA DOC</div>
+        <div>FECHA INCORPORACIÓN</div>
+        <div>FOLIOS</div>
+        <div>PAG. INICIO - FIN</div>
+        <div>FORMATO</div>
+        <div>TAMAÑO</div>
+        <div>ORIGEN</div>
+        <div>ver</div>
+      </div>
+      <div class="sub-tabla-tbody">
+        <div class="row">
+          <div>1</div>
+          <div>Solicitud de Autorización</div>
+          <div>Solicitud</div>
+          <div>10/10/2020</div>
+          <div>10/10/2020</div>
+          <div>2</div>
+          <div>1 - 1</div>
+          <div>web</div>
+          <div>12kb</div>
+          <div>Electrónico</div>
+          <div><span>remove_red_eye</span></div>
+        </div>
+        <div class="row">
+          <div>2</div>
+          <div>Solicitud de Autorización</div>
+          <div>Solicitud</div>
+          <div>10/10/2020</div>
+          <div>10/10/2020</div>
+          <div>2</div>
+          <div>1 - 1</div>
+          <div>web</div>
+          <div>12kb</div>
+          <div>Electrónico</div>
+          <div><span>remove_red_eye</span></div>
+        </div>
+        <div class="row">
+          <div>3</div>
+          <div>Solicitud de Autorización</div>
+          <div>Solicitud</div>
+          <div>10/10/2020</div>
+          <div>10/10/2020</div>
+          <div>2</div>
+          <div>1 - 1</div>
+          <div>web</div>
+          <div>12kb</div>
+          <div>Electrónico</div>
+          <div><span>remove_red_eye</span></div>
+        </div>
+      </div>
+    </div>`
+      return tabla
     }
   };
 
@@ -292,21 +389,16 @@ const Table = (function () {
       events.onTabsTable(e)
     })
 
-    // Evento select
-    data.selects.forEach((e) => {
-      events.showOptionesSelect(e)
+    // Evento para mostrar filtros 
+    data.filters.forEach((e) => {
+      events.showFilters(e)
     })
-    data.opsSelect.forEach((e) => {
-      events.selectedOption(e)
-    })
-    events.hideSelect()
   };
 
   return {
     init: initialize
   };
 })();
-
 
 document.addEventListener(
   'DOMContentLoaded',

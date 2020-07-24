@@ -16,160 +16,130 @@
   </head>
 
   <body>
-    <nav>
+
+    <aside>
       <ul>
-        <li datta-tabla="tabla-1" class="active">Tabla 1</li>
-        <li datta-tabla="tabla-2">Tabla 2</li>
+        <li class="active"><i>drafts</i> Por recibir</li>
+        <li><i>mail</i>Recibidos</li>
+        <li><i>send</i>Enviados</li>
       </ul>
-    </nav>
+    </aside>
 
-    <section class="tabla tabla-1">
-      <div class="container-top">
-        <div class="ctn-filters">
-          <div>
-            <span>Tipo de Autorización</span>
-            <div class="container-select">
-              <div class="select">
-                <span class="selected">ASS</span>
-                <i>expand_more</i>
-              </div>
-              <ul>
-                <li datta-value="ass">ASS</li>
-                <li datta-value="ass">ASS</li>
-                <li datta-value="ass">ESS</li>
-              </ul>
-            </div>
+    <main>
+      <!-- <div class="sub-tabla">
+        <div class="sub-tabla-thead">
+          <div>Órden</div>
+          <div>Documento</div>
+          <div>TIPOLOGÍA DOCUMENTAL</div>
+          <div>FECHA DOC</div>
+          <div>FECHA INCORPORACIÓN</div>
+          <div>FOLIOS</div>
+          <div>PAG. INICIO - FIN</div>
+          <div>FORMATO</div>
+          <div>TAMAÑO</div>
+          <div>ORIGEN</div>
+          <div>ver</div>
+        </div>
+        <div class="sub-tabla-tbody">
+          <div class="row">
+            <div>1</div>
+            <div>Solicitud de Autorización</div>
+            <div>Solicitud</div>
+            <div>10/10/2020</div>
+            <div>10/10/2020</div>
+            <div>2</div>
+            <div>1 - 1</div>
+            <div>web</div>
+            <div>12kb</div>
+            <div>Electrónico</div>
+            <div><span>remove_red_eye</span></div>
           </div>
-          <div>
-            <span>Estado</span>
-            <div class="container-select">
-              <div class="select">
-                <span class="selected">Estado</span>
-                <i>expand_more</i>
-              </div>
-              <ul>
-                <li datta-value="value1">Todos</li>
-                <li datta-value="value2">Activo</li>
-                <li datta-value="value3">Inactivo</li>
-              </ul>
-            </div>
+          <div class="row">
+            <div>2</div>
+            <div>Solicitud de Autorización</div>
+            <div>Solicitud</div>
+            <div>10/10/2020</div>
+            <div>10/10/2020</div>
+            <div>2</div>
+            <div>1 - 1</div>
+            <div>web</div>
+            <div>12kb</div>
+            <div>Electrónico</div>
+            <div><span>remove_red_eye</span></div>
           </div>
-          <div>
-            <span>Buscar</span>
-            <div class="container-select">
-              <div class="select">
-                <span class="selected">Buscar</span>
-                <i>expand_more</i>
-              </div>
-              <ul>
-                <li datta-value="value1">Opción 1</li>
-                <li datta-value="value2">Opción 2</li>
-                <li datta-value="value3">Opción 3</li>
-              </ul>
-            </div>
+          <div class="row">
+            <div>3</div>
+            <div>Solicitud de Autorización</div>
+            <div>Solicitud</div>
+            <div>10/10/2020</div>
+            <div>10/10/2020</div>
+            <div>2</div>
+            <div>1 - 1</div>
+            <div>web</div>
+            <div>12kb</div>
+            <div>Electrónico</div>
+            <div><span>remove_red_eye</span></div>
           </div>
         </div>
-        <div class="ctn-options">
-          <span title="Asignar Manual">settings</span>
-          <span title="Asignar Automático">autorenew</span>
-          <span title="Limpiar">cleaning_services</span>
-          <span title="Filtar">filter_alt</span>
-          <span title="Exportar">import_export</span>
-        </div>
-      </div>
+      </div> -->
 
-      <!-- Contenido -->
-      <div class="ctn-table">
-        <table cellspacing="0">
-          <thead>
-            <tr>
-            </tr>
-          </thead>
+      <nav>
+        <ul>
+          <li datta-tabla="tabla-1" class="active">Bandeja de bonificaciones</li>
+          <li datta-tabla="tabla-2">Bandeja de autorizaciones</li>
+        </ul>
+      </nav>
 
-          <!-- Cuerpo de la tabla -->
-          <tbody class="hide-inputs">
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="tabla tabla-2 is-hidden">
-      <div class="container-top">
-        <div class="ctn-filters">
-          <div>
-            <span>Placa</span>
-            <input type="text">
-          </div>
-          <div>
-            <span>Estado</span>
-            <div class="container-select">
-              <div class="select">
-                <span class="selected">Estado</span>
-                <i>expand_more</i>
-              </div>
-              <ul>
-                <li datta-value="value1">Todos</li>
-                <li datta-value="value2">Activo</li>
-                <li datta-value="value3">Inactivo</li>
-              </ul>
+      <section class="tabla tabla-1" id="tabla-1">
+        <div class="container-top">
+          <div class="ctn-filters">
+            <div class="btn-exportar">
+              <img src="img/export_excel.png" alt="Exportar">
+              Exportar
             </div>
           </div>
-          <div>
-            <span>Buscar</span>
-            <div class="container-select">
-              <div class="select">
-                <span class="selected">Buscar</span>
-                <i>expand_more</i>
-              </div>
-              <ul>
-                <li datta-value="value1">Opción 1</li>
-                <li datta-value="value2">Opción 2</li>
-                <li datta-value="value3">Opción 3</li>
-              </ul>
-            </div>
+          <div class="ctn-options">
+            <span title="Asignar Manual">settings</span>
+            <span title="Asignar Automático">autorenew</span>
+            <span title="Limpiar">cleaning_services</span>
+            <span title="Filtar" class="show-filters">filter_alt</span>
           </div>
         </div>
-        <div class="ctn-options">
-          <span title="Asignar Manual">settings</span>
-          <span title="Asignar Automático">autorenew</span>
-          <span title="Limpiar">cleaning_services</span>
-          <span title="Filtar">filter_alt</span>
-          <span title="Exportar">import_export</span>
+
+        <!-- Contenido -->
+        <div class="ctn-table">
+          <div class="table">
+            <div class="thead"></div>
+            <div class="tbody hide-inputs"></div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Contenido -->
-      <div class="ctn-table">
-        <table cellspacing="0">
-          <thead>
-            <tr>
-              <!-- <th>Código</th>
-              <th>Expediente</th>
-              <th>País Origen</th>
-              <th>Origen</th>
-              <th>Destino</th>
-              <th>Largo Total</th>
-              <th>Ancho Total</th>
-              <th>Alto Total</th>
-              <th>Peso Total</th>
-              <th>Vehiculo Apoyo</th>
-              <th>Razón Social</th>
-              <th>RepresentanteLegal</th>
-              <th>Observación</th>
-              <th>NotifObservación</th>
-              <th>Subsanado</th>
-              <th>Notificado Autorización</th>
-              <th>Especialista</th>
-              <th>Estado</th> -->
-            </tr>
-          </thead>
+      <section class="tabla tabla-2 is-hidden" id="tabla-2">
+        <div class="container-top">
+          <div class="ctn-filters">
+            <div class="btn-exportar">
+              <img src="img/export_excel.png" alt="Exportar">
+              Exportar
+            </div>
+          </div>
+          <div class="ctn-options">
+            <span title="Asignar Manual">settings</span>
+            <span title="Asignar Automático">autorenew</span>
+            <span title="Limpiar">cleaning_services</span>
+            <span title="Filtar" class="show-filters">filter_alt</span>
+          </div>
+        </div>
 
-          <!-- Cuerpo de la tabla -->
-          <tbody class="hide-inputs">
-          </tbody>
-        </table>
-      </div>
-    </section>
+        <!-- Contenido -->
+        <div class="ctn-table">
+          <div class="table">
+            <div class="thead"></div>
+            <div class="tbody hide-inputs"></div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- Scripts -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
