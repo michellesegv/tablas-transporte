@@ -175,6 +175,8 @@ const Table = (function () {
     },
     showMoreOptions: function (elem) {
       elem.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
         const parent = e.target.parentNode.classList.contains('more-ops') ? e.target.parentNode : e.target.parentNode.parentNode
         const tooltip = parent.children[1]
         !tooltip.classList.contains('show') ? document.querySelectorAll('.more-ops div').forEach((e) => { e.classList.remove('show') }) : true
