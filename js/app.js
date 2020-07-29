@@ -177,23 +177,9 @@ const Table = (function () {
       elem.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
-        // const parent = e.target.parentNode.classList.contains('more-ops') ? e.target.parentNode : e.target.parentNode.parentNode
-        const parent = e.target.closest('.more-ops').classList.contains('more-ops')
-        console.log('parent', parent)
-        // const tooltip = parent.children[1]
 
-        // !tooltip.classList.contains('show') ? document.querySelectorAll('.more-ops div').forEach((e) => { e.classList.remove('show') }) : true
-        // !tooltip.classList.contains('show') ? document.querySelectorAll('.more-ops div').forEach((e) => { e.classList.remove('show') }) : true
-        // console.log('tooltip', tooltip)
-        // console.log(tooltip.closest('.more-ops'))
-        // tooltip.closest('.more-ops')
-        // tooltip.classList.toggle('show')
-      })
-    },
-    showOptionesSelect: function (elem) {
-      elem.addEventListener('click', (e) => {
-        const container = e.target.classList.contains('select') ? e.target.parentNode : e.target.parentNode.parentNode
-        container.classList.toggle('active')
+        const parent = e.target.closest('.more-ops')
+        parent.classList.toggle('show')
       })
     },
     selectedOption: function (elem) {
@@ -205,12 +191,10 @@ const Table = (function () {
     },
     hideMoreOps: function () {
       document.addEventListener('click', (e) => {
-        console.log('e.target', e.target)
-        console.log('e.target.clps', e.target.closest('.more-ops'))
-
-        // if (!e.target.classList.contains('select')) {
-        // data.selects.forEach((e) => { e.classList.remove('active') })
-        // }
+        const moreOps = e.target.closest('.more-ops');
+        
+        moreOps == null ?
+          document.querySelectorAll('.more-ops').forEach((e) => { e.classList.remove('show') }) : true
       })
     },
     showFilters: function (elem) {

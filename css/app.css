@@ -487,8 +487,11 @@ nav ul li.active::before {
   top: -6px;
   right: 12.5px;
 }
-.more-ops div.show {
+.more-ops.show div {
   display: inline-block !important;
+}
+.ctn-table .more-ops.show .circles span {
+  color: var(--color-yellow);
 }
 .more-ops ul {
   list-style: none;
