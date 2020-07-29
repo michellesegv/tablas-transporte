@@ -177,10 +177,17 @@ const Table = (function () {
       elem.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
-        const parent = e.target.parentNode.classList.contains('more-ops') ? e.target.parentNode : e.target.parentNode.parentNode
-        const tooltip = parent.children[1]
-        !tooltip.classList.contains('show') ? document.querySelectorAll('.more-ops div').forEach((e) => { e.classList.remove('show') }) : true
-        tooltip.classList.toggle('show')
+        // const parent = e.target.parentNode.classList.contains('more-ops') ? e.target.parentNode : e.target.parentNode.parentNode
+        const parent = e.target.closest('.more-ops').classList.contains('more-ops')
+        console.log('parent', parent)
+        // const tooltip = parent.children[1]
+
+        // !tooltip.classList.contains('show') ? document.querySelectorAll('.more-ops div').forEach((e) => { e.classList.remove('show') }) : true
+        // !tooltip.classList.contains('show') ? document.querySelectorAll('.more-ops div').forEach((e) => { e.classList.remove('show') }) : true
+        // console.log('tooltip', tooltip)
+        // console.log(tooltip.closest('.more-ops'))
+        // tooltip.closest('.more-ops')
+        // tooltip.classList.toggle('show')
       })
     },
     showOptionesSelect: function (elem) {
@@ -196,11 +203,14 @@ const Table = (function () {
         textSelected.innerText = text
       })
     },
-    hideSelect: function () {
+    hideMoreOps: function () {
       document.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('select')) {
-          data.selects.forEach((e) => { e.classList.remove('active') })
-        }
+        console.log('e.target', e.target)
+        console.log('e.target.clps', e.target.closest('.more-ops'))
+
+        // if (!e.target.classList.contains('select')) {
+        // data.selects.forEach((e) => { e.classList.remove('active') })
+        // }
       })
     },
     showFilters: function (elem) {
@@ -395,6 +405,8 @@ const Table = (function () {
     data.filters.forEach((e) => {
       events.showFilters(e)
     })
+
+    events.hideMoreOps()
   };
 
   return {

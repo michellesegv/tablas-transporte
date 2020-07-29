@@ -412,6 +412,9 @@ nav ul li.active::before {
 
   text-transform: none;
 }
+.sub-tabla .sub-tabla-tbody .row div:last-child span {
+  cursor: pointer;
+}
 .sub-tabla .sub-tabla-tbody .row:nth-child(2n) div {
   background-color: #f3f3f3;
 }
