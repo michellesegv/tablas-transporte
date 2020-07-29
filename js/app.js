@@ -179,20 +179,19 @@ const Table = (function () {
         e.stopImmediatePropagation();
 
         const parent = e.target.closest('.more-ops')
-        parent.classList.toggle('show')
-      })
-    },
-    selectedOption: function (elem) {
-      elem.addEventListener('click', (e) => {
-        const text = e.target.innerText
-        const textSelected = e.target.parentNode.parentNode.children[0].children[0]
-        textSelected.innerText = text
+
+        if (parent.classList.contains('show')) {
+          parent.classList.remove('show')
+        } else {
+          document.querySelectorAll('.more-ops').forEach((e) => { e.classList.remove('show') })
+          parent.classList.add('show')
+        }
       })
     },
     hideMoreOps: function () {
       document.addEventListener('click', (e) => {
         const moreOps = e.target.closest('.more-ops');
-        
+
         moreOps == null ?
           document.querySelectorAll('.more-ops').forEach((e) => { e.classList.remove('show') }) : true
       })
