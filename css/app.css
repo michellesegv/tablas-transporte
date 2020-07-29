@@ -269,7 +269,7 @@ nav ul li.active::before {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 12px;
   font-family: Roboto;
   color: #4d4d4d;
@@ -292,7 +292,7 @@ nav ul li.active::before {
   flex-grow: 1;
   max-width: 150px;
   min-width: 150px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 12px;
   color: var(--color-gray);
 }
@@ -460,7 +460,6 @@ nav ul li.active::before {
   display: none !important;
   border: 1px solid var(--color-gray-tooltip);
   padding: 18px 15px !important;
-  width: 105px;
   border-radius: 8px;
   position: absolute;
   top: 8px;
@@ -495,8 +494,8 @@ nav ul li.active::before {
 }
 .more-ops ul {
   list-style: none;
-  font-size: 7px;
-  line-height: 8px;
+  font-size: 14px;
+  line-height: 16px;
   color: var(--color-options);
 }
 .more-ops ul li {
